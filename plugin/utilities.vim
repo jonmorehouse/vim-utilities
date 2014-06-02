@@ -1,14 +1,16 @@
 " Bootstrap the plugin
-fu! utilities#Bootstrap()
+fu! utilities#Bootstrap(...)
     " make sure to bootstrap the basePath as needed
     call utilities#BasePath()
     " now load up local vimrc files
     call utilities#LoadLocalVimrc()
+    if len(a:000) > 0
+        return
     " open up explore if no args are passed on startup
-    if len(argv()) == 0 
+    elseif len(argv()) == 0
         Explore
     " check to make sure directory wasn't passed
-    elseif isdirectory(argv()[0])
+    elseif isdirectory(argv()[0]) && len(a:000) == 0
         let g:basePath=argv()[0]
         Explore
     endif
