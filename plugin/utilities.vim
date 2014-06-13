@@ -8,11 +8,11 @@ fu! utilities#Bootstrap(...)
         return
     " open up explore if no args are passed on startup
     elseif len(argv()) == 0
-        Explore
+        VimFiler
     " check to make sure directory wasn't passed
     elseif isdirectory(argv()[0]) && len(a:000) == 0
         let g:basePath=argv()[0]
-        Explore
+        VimFiler
     endif
 endfunction
 
