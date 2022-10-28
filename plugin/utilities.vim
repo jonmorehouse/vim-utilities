@@ -32,7 +32,6 @@ endif
 " link up autocommands as needed
 " :help autocmd-events
 " now lets actually call the global vimrc file at all times
-autocmd VimEnter * call utilities#Bootstrap()
 
 "check to see if argv was passed
 "resolve argv to grab the base directory
@@ -46,7 +45,7 @@ endfunction
 
 " local.vimrc override!
 fu! utilities#LoadLocalVimrc()
-  call utilities#BasePath() 
+  call utilities#BasePath()
   let localPath = g:basePath ."/.local.vimrc"
   if filereadable(localPath)
     execute("so ". localPath)
@@ -60,7 +59,7 @@ fu! utilities#CleanShell(...)
     execute "! ". a:command
   endfunction
   " always clear the screen before executing anything
-  let command="printf \"\033c\"" 
+  let command="printf \"\033c\""
   " now loop through each of the commands and append them
   let c=1
   while c <= a:0
@@ -84,7 +83,7 @@ fu! utilities#Zsh(...)
 endfunction
 
 fu! utilities#CleanZsh(...)
-  let command="printf \"\033c\" && source ~/.zshrc &&" 
+  let command="printf \"\033c\" && source ~/.zshrc &&"
   let c=1
   while c <= a:0
     let commandPiece=eval("a:". c)
@@ -107,10 +106,9 @@ fu! utilities#GetFileType(path)
 endfunction
 
 fu! utilities#Capitalize(input)
-  return substitute(a:input, '.', '\u&', '') 
+  return substitute(a:input, '.', '\u&', '')
   "return join([toupper(a:input[0]), a:input[1:len(a:input)]], "")
 endfunction
 
 
-
-
+call utilities#BasePath()
